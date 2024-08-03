@@ -217,218 +217,234 @@ if(isset($_POST['post'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>post property</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post property</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
-   
-<?php include 'components/user_header.php'; ?>
 
-<section class="property-form">
+    <?php include 'components/user_header.php'; ?>
 
-   <form action="" method="POST" enctype="multipart/form-data">
-      <h3>property details</h3>
-      <div class="box">
-         <p>property name <span>*</span></p>
-         <input type="text" name="property_name" required maxlength="50" placeholder="enter property name" class="input">
-      </div>
-      <div class="flex">
-         <div class="box">
-            <p>property price <span>*</span></p>
-            <input type="number" name="price" required min="0" max="9999999999" maxlength="10" placeholder="enter property price" class="input">
-         </div>
-         <div class="box">
-            <p>deposite amount <span>*</span></p>
-            <input type="number" name="deposite" required min="0" max="9999999999" maxlength="10" placeholder="enter deposite amount" class="input">
-         </div>
-         <div class="box">
-            <p>property address <span>*</span></p>
-            <input type="text" name="address" required maxlength="100" placeholder="enter property full address" class="input">
-         </div>
-         <div class="box">
-            <p>offer type <span>*</span></p>
-            <select name="offer" required class="input">
-               <option value="sale">sale</option>
-               <option value="resale">resale</option>
-               <option value="rent">rent</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>property type <span>*</span></p>
-            <select name="type" required class="input">
-               <option value="flat">flat</option>
-               <option value="house">house</option>
-               <option value="shop">shop</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>property status <span>*</span></p>
-            <select name="status" required class="input">
-               <option value="ready to move">ready to move</option>
-               <option value="under construction">under construction</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>furnished status <span>*</span></p>
-            <select name="furnished" required class="input">
-               <option value="furnished">furnished</option>
-               <option value="semi-furnished">semi-furnished</option>
-               <option value="unfurnished">unfurnished</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>how many BHK <span>*</span></p>
-            <select name="bhk" required class="input">
-               <option value="1">1 BHK</option>
-               <option value="2">2 BHK</option>
-               <option value="3">3 BHK</option>
-               <option value="4">4 BHK</option>
-               <option value="5">5 BHK</option>
-               <option value="6">6 BHK</option>
-               <option value="7">7 BHK</option>
-               <option value="8">8 BHK</option>
-               <option value="9">9 BHK</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>how many bedrooms <span>*</span></p>
-            <select name="bedroom" required class="input">
-               <option value="0">0 bedroom</option>
-               <option value="1" selected>1 bedroom</option>
-               <option value="2">2 bedroom</option>
-               <option value="3">3 bedroom</option>
-               <option value="4">4 bedroom</option>
-               <option value="5">5 bedroom</option>
-               <option value="6">6 bedroom</option>
-               <option value="7">7 bedroom</option>
-               <option value="8">8 bedroom</option>
-               <option value="9">9 bedroom</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>how many bathrooms <span>*</span></p>
-            <select name="bathroom" required class="input">
-               <option value="1">1 bathroom</option>
-               <option value="2">2 bathroom</option>
-               <option value="3">3 bathroom</option>
-               <option value="4">4 bathroom</option>
-               <option value="5">5 bathroom</option>
-               <option value="6">6 bathroom</option>
-               <option value="7">7 bathroom</option>
-               <option value="8">8 bathroom</option>
-               <option value="9">9 bathroom</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>how many balconys <span>*</span></p>
-            <select name="balcony" required class="input">
-               <option value="0">0 balcony</option>
-               <option value="1">1 balcony</option>
-               <option value="2">2 balcony</option>
-               <option value="3">3 balcony</option>
-               <option value="4">4 balcony</option>
-               <option value="5">5 balcony</option>
-               <option value="6">6 balcony</option>
-               <option value="7">7 balcony</option>
-               <option value="8">8 balcony</option>
-               <option value="9">9 balcony</option>
-            </select>
-         </div>
-         <div class="box">
-            <p>carpet area <span>*</span></p>
-            <input type="number" name="carpet" required min="1" max="9999999999" maxlength="10" placeholder="how many squarefits?" class="input">
-         </div>
-         <div class="box">
-            <p>property age <span>*</span></p>
-            <input type="number" name="age" required min="0" max="99" maxlength="2" placeholder="how old is property?" class="input">
-         </div>
-         <div class="box">
-            <p>total floors <span>*</span></p>
-            <input type="number" name="total_floors" required min="0" max="99" maxlength="2" placeholder="how floors available?" class="input">
-         </div>
-         <div class="box">
-            <p>floor room <span>*</span></p>
-            <input type="number" name="room_floor" required min="0" max="99" maxlength="2" placeholder="property floor number" class="input">
-         </div>
-         <div class="box">
-            <p>loan <span>*</span></p>
-            <select name="loan" required class="input">
-               <option value="available">available</option>
-               <option value="not available">not available</option>
-            </select>
-         </div>
-      </div>
-      <div class="box">
-         <p>property description <span>*</span></p>
-         <textarea name="description" maxlength="1000" class="input" required cols="30" rows="10" placeholder="write about property..."></textarea>
-      </div>
-      <div class="checkbox">
-         <div class="box">
-            <p><input type="checkbox" name="lift" value="yes" />lifts</p>
-            <p><input type="checkbox" name="security_guard" value="yes" />security guard</p>
-            <p><input type="checkbox" name="play_ground" value="yes" />play ground</p>
-            <p><input type="checkbox" name="garden" value="yes" />garden</p>
-            <p><input type="checkbox" name="water_supply" value="yes" />water supply</p>
-            <p><input type="checkbox" name="power_backup" value="yes" />power backup</p>
-         </div>
-         <div class="box">
-            <p><input type="checkbox" name="parking_area" value="yes" />parking area</p>
-            <p><input type="checkbox" name="gym" value="yes" />gym</p>
-            <p><input type="checkbox" name="shopping_mall" value="yes" />shopping_mall</p>
-            <p><input type="checkbox" name="hospital" value="yes" />hospital</p>
-            <p><input type="checkbox" name="school" value="yes" />school</p>
-            <p><input type="checkbox" name="market_area" value="yes" />market area</p>
-         </div>
-      </div>
-      <div class="box">
-         <p>image 01 <span>*</span></p>
-         <input type="file" name="image_01" class="input" accept="image/*" required>
-      </div>
-      <div class="flex"> 
-         <div class="box">
-            <p>image 02</p>
-            <input type="file" name="image_02" class="input" accept="image/*">
-         </div>
-         <div class="box">
-            <p>image 03</p>
-            <input type="file" name="image_03" class="input" accept="image/*">
-         </div>
-         <div class="box">
-            <p>image 04</p>
-            <input type="file" name="image_04" class="input" accept="image/*">
-         </div>
-         <div class="box">
-            <p>image 05</p>
-            <input type="file" name="image_05" class="input" accept="image/*">
-         </div>   
-      </div>
-      <input type="submit" value="post property" class="btn" name="post">
-   </form>
+    <section class="property-form">
 
-</section>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <h3>Details de la propriete</h3>
+            <div class="box">
+                <p>NOm de la propriete <span>*</span></p>
+                <input type="text" name="property_name" required maxlength="50"
+                    placeholder="entrer le nom de la propriete" class="input">
+            </div>
+            <div class="flex">
+                <div class="box">
+                    <p>prix de la propriété <span>*</span></p>
+                    <input type="number" name="price" required min="0" max="9999999999" maxlength="10"
+                        placeholder="entrez le prix de la propriété" class="input">
+                </div>
+                <div class="box">
+                    <p>montant du dépôt <span>*</span></p>
+                    <input type="number" name="deposite" required min="0" max="9999999999" maxlength="10"
+                        placeholder="entrez le montant du dépôt" class="input">
+                </div>
+                <div class="box">
+                    <p>adresse de la propriété <span>*</span></p>
+                    <input type="text" name="address" required maxlength="100"
+                        placeholder="entrez l'adresse complète de la propriété" class="input">
+                </div>
+                <div class="box">
+                    <p>type d'offre <span>*</span></p>
+                    <select name="offer" required class="input">
+                        <option value="sale">vente</option>
+                        <option value="resale">revente</option>
+                        <option value="rent">location</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>type de propriété <span>*</span></p>
+                    <select name="type" required class="input">
+                        <option value="flat">appartement</option>
+                        <option value="house">maison</option>
+                        <option value="shop">magasin</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>statut de la propriété <span>*</span></p>
+                    <select name="status" required class="input">
+                        <option value="ready to move">prêt à emménager</option>
+                        <option value="under construction">en construction</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>statut meublé <span>*</span></p>
+                    <select name="furnished" required class="input">
+                        <option value="furnished">meublé</option>
+                        <option value="semi-furnished">semi-meublé</option>
+                        <option value="unfurnished">non meublé</option>
+                    </select>
+                </div>
+
+                <div class="box">
+                    <p>combien de BHK <span>*</span></p>
+                    <select name="bhk" required class="input">
+                        <option value="1">1 BHK</option>
+                        <option value="2">2 BHK</option>
+                        <option value="3">3 BHK</option>
+                        <option value="4">4 BHK</option>
+                        <option value="5">5 BHK</option>
+                        <option value="6">6 BHK</option>
+                        <option value="7">7 BHK</option>
+                        <option value="8">8 BHK</option>
+                        <option value="9">9 BHK</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>combien de chambres <span>*</span></p>
+                    <select name="bedroom" required class="input">
+                        <option value="0">0 chambre</option>
+                        <option value="1" selected>1 chambre</option>
+                        <option value="2">2 chambres</option>
+                        <option value="3">3 chambres</option>
+                        <option value="4">4 chambres</option>
+                        <option value="5">5 chambres</option>
+                        <option value="6">6 chambres</option>
+                        <option value="7">7 chambres</option>
+                        <option value="8">8 chambres</option>
+                        <option value="9">9 chambres</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>combien de salles de bain <span>*</span></p>
+                    <select name="bathroom" required class="input">
+                        <option value="1">1 salle de bain</option>
+                        <option value="2">2 salles de bain</option>
+                        <option value="3">3 salles de bain</option>
+                        <option value="4">4 salles de bain</option>
+                        <option value="5">5 salles de bain</option>
+                        <option value="6">6 salles de bain</option>
+                        <option value="7">7 salles de bain</option>
+                        <option value="8">8 salles de bain</option>
+                        <option value="9">9 salles de bain</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>combien de balcons <span>*</span></p>
+                    <select name="balcony" required class="input">
+                        <option value="0">0 balcon</option>
+                        <option value="1">1 balcon</option>
+                        <option value="2">2 balcons</option>
+                        <option value="3">3 balcons</option>
+                        <option value="4">4 balcons</option>
+                        <option value="5">5 balcons</option>
+                        <option value="6">6 balcons</option>
+                        <option value="7">7 balcons</option>
+                        <option value="8">8 balcons</option>
+                        <option value="9">9 balcons</option>
+                    </select>
+                </div>
+
+                <div class="box">
+                    <p>surface habitable <span>*</span></p>
+                    <input type="number" name="carpet" required min="1" max="9999999999" maxlength="10"
+                        placeholder="combien de pieds carrés ?" class="input">
+                </div>
+                <div class="box">
+                    <p>âge de la propriété <span>*</span></p>
+                    <input type="number" name="age" required min="0" max="99" maxlength="2"
+                        placeholder="quel âge a la propriété ?" class="input">
+                </div>
+                <div class="box">
+                    <p>nombre total d'étages <span>*</span></p>
+                    <input type="number" name="total_floors" required min="0" max="99" maxlength="2"
+                        placeholder="combien d'étages disponibles ?" class="input">
+                </div>
+                <div class="box">
+                    <p>étage de la propriété <span>*</span></p>
+                    <input type="number" name="room_floor" required min="0" max="99" maxlength="2"
+                        placeholder="numéro d'étage de la propriété" class="input">
+                </div>
+                <div class="box">
+                    <p>prêt <span>*</span></p>
+                    <select name="loan" required class="input">
+                        <option value="available">disponible</option>
+                        <option value="not available">non disponible</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <p>description de la propriété <span>*</span></p>
+                    <textarea name="description" maxlength="1000" class="input" required cols="30" rows="10"
+                        placeholder="écrivez sur la propriété..."></textarea>
+                </div>
+
+            </div>
+            <div class="checkbox">
+                <div class="box">
+                    <p><input type="checkbox" name="lift" value="yes" />ascenseurs</p>
+                    <p><input type="checkbox" name="security_guard" value="yes" />gardien de sécurité</p>
+                    <p><input type="checkbox" name="play_ground" value="yes" />aire de jeux</p>
+                    <p><input type="checkbox" name="garden" value="yes" />jardin</p>
+                    <p><input type="checkbox" name="water_supply" value="yes" />approvisionnement en eau</p>
+                    <p><input type="checkbox" name="power_backup" value="yes" />alimentation de secours</p>
+                </div>
+                <div class="box">
+                    <p><input type="checkbox" name="parking_area" value="yes" />zone de stationnement</p>
+                    <p><input type="checkbox" name="gym" value="yes" />salle de gym</p>
+                    <p><input type="checkbox" name="shopping_mall" value="yes" />centre commercial</p>
+                    <p><input type="checkbox" name="hospital" value="yes" />hôpital</p>
+                    <p><input type="checkbox" name="school" value="yes" />école</p>
+                    <p><input type="checkbox" name="market_area" value="yes" />zone de marché</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <p>image 01 <span>*</span></p>
+                <input type="file" name="image_01" class="input" accept="image/*" required>
+            </div>
+            <div class="flex">
+                <div class="box">
+                    <p>image 02</p>
+                    <input type="file" name="image_02" class="input" accept="image/*">
+                </div>
+                <div class="box">
+                    <p>image 03</p>
+                    <input type="file" name="image_03" class="input" accept="image/*">
+                </div>
+                <div class="box">
+                    <p>image 04</p>
+                    <input type="file" name="image_04" class="input" accept="image/*">
+                </div>
+                <div class="box">
+                    <p>image 05</p>
+                    <input type="file" name="image_05" class="input" accept="image/*">
+                </div>
+            </div>
+            <input type="submit" value="poster la propriete" class="btn" name="post">
+        </form>
+
+    </section>
 
 
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<?php include 'components/footer.php'; ?>
+    <?php include 'components/footer.php'; ?>
 
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
 
-<?php include 'components/message.php'; ?>
+    <?php include 'components/message.php'; ?>
 
 </body>
+
 </html>
