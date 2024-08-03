@@ -13,15 +13,15 @@ if(isset($_POST['save'])){
       if($verify_saved->rowCount() > 0){
          $remove_saved = $conn->prepare("DELETE FROM `saved` WHERE property_id = ? AND user_id = ?");
          $remove_saved->execute([$property_id, $user_id]);
-         $success_msg[] = 'removed from saved!';
+         $success_msg[] = 'supprimé de sauvegardé !';
       }else{
          $insert_saved = $conn->prepare("INSERT INTO`saved`(id, property_id, user_id) VALUES(?,?,?)");
          $insert_saved->execute([$save_id, $property_id, $user_id]);
-         $success_msg[] = 'listing saved!';
+         $success_msg[] = 'liste enregistrée !';
       }
 
    }else{
-      $warning_msg[] = 'please login first!';
+      $warning_msg[] = "s'il vous plait Connectez-vous d'abord!";
    }
 }
 
@@ -41,15 +41,15 @@ if(isset($_POST['send'])){
       $verify_request->execute([$property_id, $user_id, $receiver]);
 
       if(($verify_request->rowCount() > 0)){
-         $warning_msg[] = 'request sent already!';
+         $warning_msg[] = 'demande déjà envoyée !';
       }else{
          $send_request = $conn->prepare("INSERT INTO `requests`(id, property_id, sender, receiver) VALUES(?,?,?,?)");
          $send_request->execute([$request_id, $property_id, $user_id, $receiver]);
-         $success_msg[] = 'request sent successfully!';
+         $success_msg[] = 'demande envoyée avec succès !';
       }
 
    }else{
-      $warning_msg[] = 'please login first!';
+      $warning_msg[] = "s'il vous plait Connectez-vous d'abord!";
    }
 }
 
