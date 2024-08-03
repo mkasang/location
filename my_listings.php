@@ -46,9 +46,9 @@ if(isset($_POST['delete'])){
       $delete_requests->execute([$delete_id]);
       $delete_listing = $conn->prepare("DELETE FROM `property` WHERE id = ?");
       $delete_listing->execute([$delete_id]);
-      $success_msg[] = 'listing deleted successfully!';
+      $success_msg[] = 'annonce supprimée avec succès !';
    }else{
-      $warning_msg[] = 'listing deleted already!';
+      $warning_msg[] = 'annonce déjà supprimée !';
    }
 
 }
@@ -57,30 +57,32 @@ if(isset($_POST['delete'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>my listings</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my listings</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
-   
-<?php include 'components/user_header.php'; ?>
 
-<section class="my-listings">
+    <?php include 'components/user_header.php'; ?>
 
-   <h1 class="heading">my listings</h1>
+    <section class="my-listings">
 
-   <div class="box-container">
+        <h1 class="heading">mes annonces</h1>
 
-   <?php
+        <div class="box-container">
+
+            <?php
       $total_images = 0;
       $select_properties = $conn->prepare("SELECT * FROM `property` WHERE user_id = ? ORDER BY date DESC");
       $select_properties->execute([$user_id]);
@@ -113,47 +115,51 @@ if(isset($_POST['delete'])){
          $total_images = (1 + $image_coutn_02 + $image_coutn_03 + $image_coutn_04 + $image_coutn_05);
 
    ?>
-   <form accept="" method="POST" class="box">
-      <input type="hidden" name="property_id" value="<?= $property_id; ?>">
-      <div class="thumb">
-         <p><i class="far fa-image"></i><span><?= $total_images; ?></span></p> 
-         <img src="uploaded_files/<?= $fetch_property['image_01']; ?>" alt="">
-      </div>
-      <div class="price"><i class="fas fa-indian-rupee-sign"></i><span><?= $fetch_property['price']; ?></span></div>
-      <h3 class="name"><?= $fetch_property['property_name']; ?></h3>
-      <p class="location"><i class="fas fa-map-marker-alt"></i><span><?= $fetch_property['address']; ?></span></p>
-      <div class="flex-btn">
-         <a href="update_property.php?get_id=<?= $property_id; ?>" class="btn">update</a>
-         <input type="submit" name="delete" value="delete" class="btn" onclick="return confirm('delete this listing?');">
-      </div>
-      <a href="view_property.php?get_id=<?= $property_id; ?>" class="btn">view property</a>
-   </form>
-   <?php
+            <form accept="" method="POST" class="box">
+                <input type="hidden" name="property_id" value="<?= $property_id; ?>">
+                <div class="thumb">
+                    <p><i class="far fa-image"></i><span><?= $total_images; ?></span></p>
+                    <img src="uploaded_files/<?= $fetch_property['image_01']; ?>" alt="">
+                </div>
+                <div class="price"><i class="fa-solid fa-dollar-sign"></i><span><?= $fetch_property['price']; ?></span>
+                </div>
+                <h3 class="name"><?= $fetch_property['property_name']; ?></h3>
+                <p class="location"><i class="fas fa-map-marker-alt"></i><span><?= $fetch_property['address']; ?></span>
+                </p>
+                <div class="flex-btn">
+                    <a href="update_property.php?get_id=<?= $property_id; ?>" class="btn">modifier</a>
+                    <input type="submit" name="delete" value="supprimer" class="btn"
+                        onclick="return confirm('Supprimer cette annonces?');">
+                </div>
+                <a href="view_property.php?get_id=<?= $property_id; ?>" class="btn">voir la propriete</a>
+            </form>
+            <?php
          }
       }else{
-         echo '<p class="empty">no properties added yet! <a href="post_property.php" style="margin-top:1.5rem;" class="btn">add new</a></p>';
+         echo '<p class="empty">aucune propriete! <a href="post_property.php" style="margin-top:1.5rem;" class="btn">Ajouter nouveau</a></p>';
       }
       ?>
 
-   </div>
+        </div>
 
-</section>
-
-
+    </section>
 
 
 
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<?php include 'components/footer.php'; ?>
 
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<?php include 'components/message.php'; ?>
+    <?php include 'components/footer.php'; ?>
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+
+    <?php include 'components/message.php'; ?>
 
 </body>
+
 </html>
