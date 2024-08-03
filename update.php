@@ -25,18 +25,18 @@ if(isset($_POST['submit'])){
    if(!empty($name)){
       $update_name = $conn->prepare("UPDATE `users` SET name = ? WHERE id = ?");
       $update_name->execute([$name, $user_id]);
-      $success_msg[] = 'name updated!';
+      $success_msg[] = 'nom mis a jour!';
    }
 
    if(!empty($email)){
       $verify_email = $conn->prepare("SELECT email FROM `users` WHERE email = ?");
       $verify_email->execute([$email]);
       if($verify_email->rowCount() > 0){
-         $warning_msg[] = 'email already taken!';
+         $warning_msg[] = 'email deja pris!';
       }else{
          $update_email = $conn->prepare("UPDATE `users` SET email = ? WHERE id = ?");
          $update_email->execute([$email, $user_id]);
-         $success_msg[] = 'email updated!';
+         $success_msg[] = 'email mis a jour!';
       }
    }
 
@@ -44,11 +44,11 @@ if(isset($_POST['submit'])){
       $verify_number = $conn->prepare("SELECT number FROM `users` WHERE number = ?");
       $verify_number->execute([$number]);
       if($verify_number->rowCount() > 0){
-         $warning_msg[] = 'number already taken!';
+         $warning_msg[] = 'number deja pris!';
       }else{
          $update_number = $conn->prepare("UPDATE `users` SET number = ? WHERE id = ?");
          $update_number->execute([$number, $user_id]);
-         $success_msg[] = 'number updated!';
+         $success_msg[] = 'numero mis ajour updated!';
       }
    }
 
@@ -63,16 +63,16 @@ if(isset($_POST['submit'])){
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
-         $warning_msg[] = 'old password not matched!';
+         $warning_msg[] = 'ancien mot de passe ne correspond pas!';
       }elseif($new_pass != $c_pass){
-         $warning_msg[] = 'confirm passowrd not matched!';
+         $warning_msg[] = 'la confirmation mot de passe ne correspond!';
       }else{
          if($new_pass != $empty_pass){
             $update_pass = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
             $update_pass->execute([$c_pass, $user_id]);
-            $success_msg[] = 'password updated successfully!';
+            $success_msg[] = 'mot de passe modifier avec succes!';
          }else{
-            $warning_msg[] = 'please enter new password!';
+            $warning_msg[] = 'Entrer un nouveau mot de passe!';
          }
       }
    }
@@ -83,50 +83,55 @@ if(isset($_POST['submit'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>update</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
-   
-<?php include 'components/user_header.php'; ?>
 
-<section class="form-container">
+    <?php include 'components/user_header.php'; ?>
 
-   <form action="" method="post">
-      <h3>update your account!</h3>
-      <input type="tel" name="name" maxlength="50" placeholder="<?= $fetch_user['name']; ?>" class="box">
-      <input type="email" name="email" maxlength="50" placeholder="<?= $fetch_user['email']; ?>" class="box">
-      <input type="number" name="number" min="0" max="9999999999" maxlength="10" placeholder="<?= $fetch_user['number']; ?>" class="box">
-      <input type="password" name="old_pass" maxlength="20" placeholder="enter your old password" class="box">
-      <input type="password" name="new_pass" maxlength="20" placeholder="enter your new password" class="box">
-      <input type="password" name="c_pass" maxlength="20" placeholder="confirm your new password" class="box">
-      <input type="submit" value="update now" name="submit" class="btn">
-   </form>
+    <section class="form-container">
 
-</section>
+        <form action="" method="post">
+            <h3>mettre a jour votre compte !</h3>
+            <input type="tel" name="name" maxlength="50" placeholder="<?= $fetch_user['name']; ?>" class="box">
+            <input type="email" name="email" maxlength="50" placeholder="<?= $fetch_user['email']; ?>" class="box">
+            <input type="number" name="number" min="0" max="9999999999" maxlength="10"
+                placeholder="<?= $fetch_user['number']; ?>" class="box">
+            <input type="password" name="old_pass" maxlength="20" placeholder="entrer l'ancient mot de passe"
+                class="box">
+            <input type="password" name="new_pass" maxlength="20" placeholder="enter votre mot de passe" class="box">
+            <input type="password" name="c_pass" maxlength="20" placeholder="confirmer le mot de passer" class="box">
+            <input type="submit" value="mettre a jour" name="submit" class="btn">
+        </form>
 
-
-
-
+    </section>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<?php include 'components/footer.php'; ?>
 
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
 
-<?php include 'components/message.php'; ?>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <?php include 'components/footer.php'; ?>
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+
+    <?php include 'components/message.php'; ?>
 </body>
+
 </html>
