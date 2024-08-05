@@ -14,7 +14,7 @@
 
     <a href="update.php" class="btn">mettre a jour compte</a>
     <div class="flex-btn">
-        <a href="login.php" class="option-btn">se connexion</a>
+        <a href="login.php" class="option-btn">connexion</a>
         <a href="register.php" class="option-btn">s'inscrire</a>
     </div>
     <a href="../components/admin_logout.php" onclick="return confirm('se déconnecter du site ?');" class="delete-btn"><i
