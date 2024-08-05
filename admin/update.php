@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
       }else{
          $update_name = $conn->prepare("UPDATE `admins` SET name = ? WHERE id = ?");
          $update_name->execute([$name, $admin_id]);
-         $success_msg[] = 'Username updated!';
+         $success_msg[] = "Nom d'utilisateur mis à jour !";
       }
    }
 
@@ -41,16 +41,16 @@ if(isset($_POST['submit'])){
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
-         $warning_msg[] = 'Old password not matched!';
+         $warning_msg[] = "L'ancien mot de passe ne correspond pas !";
       }elseif($c_pass != $new_pass){
-         $warning_msg[] = 'New password not matched!';
+         $warning_msg[] = "Nouveau mot de passe non concordant !";
       }else{
          if($new_pass != $empty_pass){
             $update_password = $conn->prepare("UPDATE `admins` SET password = ? WHERE id = ?");
             $update_password->execute([$c_pass, $admin_id]);
-            $success_msg[] = 'Password updated!';
+            $success_msg[] = 'Mot de passe mis à jour!';
          }else{
-            $warning_msg[] = 'Please enter new password!';
+            $warning_msg[] = 'Veuillez entrer un nouveau mot de passe !';
          }
       }
    }
@@ -61,47 +61,47 @@ if(isset($_POST['submit'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Update</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/admin_style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
+
 <body>
-   
-<!-- header section starts  -->
-<?php include '../components/admin_header.php'; ?>
-<!-- header section ends -->
 
-<!-- update section starts  -->
+    <!-- header section starts  -->
+    <?php include '../components/admin_header.php'; ?>
+    <!-- header section ends -->
 
-<section class="form-container">
+    <!-- update section starts  -->
 
-   <form action="" method="POST">
-      <h3>update profile</h3>
-      <input type="text" name="name" placeholder="<?= $fetch_profile['name']; ?>" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="old_pass" placeholder="enter old password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="new_pass" placeholder="enter new password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="c_pass" placeholder="confirm new password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="update now" name="submit" class="btn">
-   </form>
+    <section class="form-container">
 
-</section>
+        <form action="" method="POST">
+            <h3>mettre à jour le profil</h3>
+            <input type="text" name="name" placeholder="<?= $fetch_profile['name']; ?>" maxlength="20" class="box"
+                oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="password" name="old_pass" placeholder="entrez l'ancien mot de passe" maxlength="20" class="box"
+                oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="password" name="new_pass" placeholder="Entrez un nouveau mot de passe" maxlength="20"
+                class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="password" name="c_pass" placeholder="Confirmer le nouveau mot de passe" maxlength="20"
+                class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="submit" value="Mettez à jour maintenant" name="submit" class="btn">
+        </form>
 
-<!-- update section ends -->
+    </section>
 
-
-
-
-
-
+    <!-- update section ends -->
 
 
 
@@ -114,12 +114,19 @@ if(isset($_POST['submit'])){
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<!-- custom js file link  -->
-<script src="../js/admin_script.js"></script>
 
-<?php include '../components/message.php'; ?>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="../js/admin_script.js"></script>
+
+    <?php include '../components/message.php'; ?>
 
 </body>
+
 </html>
