@@ -2,7 +2,7 @@
 
     <div id="close-btn"><i class="fas fa-times"></i></div>
 
-    <a href="dashboard.php" class="logo">AdminPanel</a>
+    <a href="dashboard.php" class="logo">Panneau Admin</a>
 
     <nav class="navbar">
         <a href="dashboard.php"><i class="fas fa-home"></i><span>accueil</span></a>
@@ -14,7 +14,7 @@
 
     <a href="update.php" class="btn">mettre a jour compte</a>
 
-    <a href="register.php" class="option-btn">s'inscrire</a>
+    <a href="register.php" class="option-btn">inscrire un nouveau</a>
     <a href="../components/admin_logout.php" onclick="return confirm('se déconnecter du site ?');" class="delete-btn"><i
             class="fas fa-right-from-bracket"></i><span>Deconnection</span></a>
 
