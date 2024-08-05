@@ -13,96 +13,96 @@ if(isset($_COOKIE['admin_id'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/admin_style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
+
 <body>
-   
-<!-- header section starts  -->
-<?php include '../components/admin_header.php'; ?>
-<!-- header section ends -->
 
-<!-- dashboard section starts  -->
+    <!-- header section starts  -->
+    <?php include '../components/admin_header.php'; ?>
+    <!-- header section ends -->
 
-<section class="dashboard">
+    <!-- dashboard section starts  -->
 
-   <h1 class="heading">dashboard</h1>
+    <section class="dashboard">
 
-   <div class="box-container">
+        <h1 class="heading">Tableau de bord</h1>
 
-   <div class="box">
-      <?php
+        <div class="box-container">
+
+            <div class="box">
+                <?php
          $select_profile = $conn->prepare("SELECT * FROM `admins` WHERE id = ? LIMIT 1");
          $select_profile->execute([$admin_id]);
          $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
       ?>
-      <h3>welcome!</h3>
-      <p><?= $fetch_profile['name']; ?></p>
-      <a href="update.php" class="btn">update profile</a>
-   </div>
+                <h3>Bienvenue !</h3>
+                <p><?= $fetch_profile['name']; ?></p>
+                <a href="update.php" class="btn">mettre à jour le profil</a>
+            </div>
 
-   <div class="box">
-      <?php
+            <div class="box">
+                <?php
          $select_listings = $conn->prepare("SELECT * FROM `property`");
          $select_listings->execute();
          $count_listings = $select_listings->rowCount();
       ?>
-      <h3><?= $count_listings; ?></h3>
-      <p>property posted</p>
-      <a href="listings.php" class="btn">view listings</a>
-   </div>
+                <h3><?= $count_listings; ?></h3>
+                <p>propriété publiée</p>
+                <a href="listings.php" class="btn">voir les annonces</a>
+            </div>
 
-   <div class="box">
-      <?php
+            <div class="box">
+                <?php
          $select_users = $conn->prepare("SELECT * FROM `users`");
          $select_users->execute();
          $count_users = $select_users->rowCount();
       ?>
-      <h3><?= $count_users; ?></h3>
-      <p>total users</p>
-      <a href="users.php" class="btn">view users</a>
-   </div>
+                <h3><?= $count_users; ?></h3>
+                <p>total utilisateurs</p>
+                <a href="users.php" class="btn">voir les utilisateurs</a>
+            </div>
 
-   <div class="box">
-      <?php
+            <div class="box">
+                <?php
          $select_admins = $conn->prepare("SELECT * FROM `admins`");
          $select_admins->execute();
          $count_admins = $select_admins->rowCount();
       ?>
-      <h3><?= $count_admins; ?></h3>
-      <p>total admins</p>
-      <a href="admins.php" class="btn">view admins</a>
-   </div>
+                <h3><?= $count_admins; ?></h3>
+                <p>total d'admins</p>
+                <a href="admins.php" class="btn">voir les admin</a>
+            </div>
 
-   <div class="box">
-      <?php
+            <div class="box">
+                <?php
          $select_messages = $conn->prepare("SELECT * FROM `messages`");
          $select_messages->execute();
          $count_messages = $select_messages->rowCount();
       ?>
-      <h3><?= $count_messages; ?></h3>
-      <p>new messages</p>
-      <a href="messages.php" class="btn">view messages</a>
-   </div>
+                <h3><?= $count_messages; ?></h3>
+                <p>nouveaux messages</p>
+                <a href="messages.php" class="btn">voir les messages</a>
+            </div>
 
-   </div>
+        </div>
 
-</section>
-
-
-<!-- dashboard section ends -->
+    </section>
 
 
+    <!-- dashboard section ends -->
 
 
 
@@ -121,12 +121,15 @@ if(isset($_COOKIE['admin_id'])){
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<!-- custom js file link  -->
-<script src="../js/admin_script.js"></script>
 
-<?php include '../components/message.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="../js/admin_script.js"></script>
+
+    <?php include '../components/message.php'; ?>
 
 </body>
+
 </html>
