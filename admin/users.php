@@ -48,9 +48,9 @@ if(isset($_POST['delete'])){
       $delete_saved->execute([$delete_id]);
       $delete_user = $conn->prepare("DELETE FROM `users` WHERE id = ?");
       $delete_user->execute([$delete_id]);
-      $success_msg[] = 'user deleted!';
+      $success_msg[] = 'utilisateur supprimé !';
    }else{
-      $warning_msg[] = 'User deleted already!';
+      $warning_msg[] = 'Utilisateur déjà supprimé !';
    }
 
 }
@@ -59,39 +59,41 @@ if(isset($_POST['delete'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Users</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/admin_style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
+
 <body>
-   
-<!-- header section starts  -->
-<?php include '../components/admin_header.php'; ?>
-<!-- header section ends -->
 
-<!-- admins section starts  -->
+    <!-- header section starts  -->
+    <?php include '../components/admin_header.php'; ?>
+    <!-- header section ends -->
 
-<section class="grid">
+    <!-- admins section starts  -->
 
-   <h1 class="heading">users</h1>
+    <section class="grid">
 
-   <form action="" method="POST" class="search-form">
-      <input type="text" name="search_box" placeholder="search users..." maxlength="100" required>
-      <button type="submit" class="fas fa-search" name="search_btn"></button>
-   </form>
+        <h1 class="heading">utilisateurs</h1>
 
-   <div class="box-container">
+        <form action="" method="POST" class="search-form">
+            <input type="text" name="search_box" placeholder="chercher utilisateur..." maxlength="100" required>
+            <button type="submit" class="fas fa-search" name="search_btn"></button>
+        </form>
 
-   <?php
+        <div class="box-container">
+
+            <?php
       if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
          $search_box = $_POST['search_box'];
          $search_box = filter_var($search_box, FILTER_SANITIZE_STRING);
@@ -108,32 +110,31 @@ if(isset($_POST['delete'])){
             $count_property->execute([$fetch_users['id']]);
             $total_properties = $count_property->rowCount();
    ?>
-   <div class="box">
-      <p>name : <span><?= $fetch_users['name']; ?></span></p>
-      <p>number : <a href="tel:<?= $fetch_users['number']; ?>"><?= $fetch_users['number']; ?></a></p>
-      <p>email : <a href="mailto:<?= $fetch_users['email']; ?>"><?= $fetch_users['email']; ?></a></p>
-      <p>properties listed : <span><?= $total_properties; ?></span></p>
-      <form action="" method="POST">
-         <input type="hidden" name="delete_id" value="<?= $fetch_users['id']; ?>">
-         <input type="submit" value="delete user" onclick="return confirm('delete this user?');" name="delete" class="delete-btn">
-      </form>
-   </div>
-   <?php
+            <div class="box">
+                <p>nom : <span><?= $fetch_users['name']; ?></span></p>
+                <p>numero : <a href="tel:<?= $fetch_users['number']; ?>"><?= $fetch_users['number']; ?></a></p>
+                <p>email : <a href="mailto:<?= $fetch_users['email']; ?>"><?= $fetch_users['email']; ?></a></p>
+                <p>propriétés répertoriées : <span><?= $total_properties; ?></span></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="delete_id" value="<?= $fetch_users['id']; ?>">
+                    <input type="submit" value="Supprimer l'utilisateur"
+                        onclick="return confirm('supprimer cet utilisateur ?');" name="delete" class="delete-btn">
+                </form>
+            </div>
+            <?php
       }
    }elseif(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
-      echo '<p class="empty">results not found!</p>';
+      echo '<p class="empty">résultats non trouvés !</p>';
    }else{
-      echo '<p class="empty">no users accounts added yet!</p>';
+      echo '<p class="empty">aucun compte utilisateur ajouté pour le moment !</p>';
    }
    ?>
 
-   </div>
+        </div>
 
-</section>
+    </section>
 
-<!-- users section ends -->
-
-
+    <!-- users section ends -->
 
 
 
@@ -148,12 +149,15 @@ if(isset($_POST['delete'])){
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<!-- custom js file link  -->
-<script src="../js/admin_script.js"></script>
 
-<?php include '../components/message.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="../js/admin_script.js"></script>
+
+    <?php include '../components/message.php'; ?>
 
 </body>
+
 </html>
