@@ -49,9 +49,9 @@ if(isset($_POST['delete'])){
       }
       $delete_listings = $conn->prepare("DELETE FROM `property` WHERE id = ?");
       $delete_listings->execute([$delete_id]);
-      $success_msg[] = 'Listing deleted!';
+      $success_msg[] = 'Annonce supprimée !';
    }else{
-      $warning_msg[] = 'Listing deleted already!';
+      $warning_msg[] = 'Annonce déjà supprimée !';
    }
 
 }
@@ -85,7 +85,7 @@ if(isset($_POST['delete'])){
 
     <section class="view-property">
 
-        <h1 class="heading">property details</h1>
+        <h1 class="heading">Détails de la propriété</h1>
 
         <?php
       $select_properties = $conn->prepare("SELECT * FROM `property` WHERE id = ? ORDER BY date DESC LIMIT 1");
@@ -129,81 +129,83 @@ if(isset($_POST['delete'])){
                 <p><i class="fas fa-house"></i><span><?= $fetch_property['offer']; ?></span></p>
                 <p><i class="fas fa-calendar"></i><span><?= $fetch_property['date']; ?></span></p>
             </div>
-            <h3 class="title">details</h3>
+            <h3 class="title">détails</h3>
             <div class="flex">
                 <div class="box">
-                    <p><i>rooms :</i><span><?= $fetch_property['bhk']; ?> BHK</span></p>
-                    <p><i>deposit amount : </i><span><span class="fas fa-indian-rupee-sign"
+                    <p><i>chambres :</i><span><?= $fetch_property['bhk']; ?> BHK</span></p>
+                    <p><i>montant du dépôt : </i><span><span class="fas fa-indian-rupee-sign"
                                 style="margin-right: .5rem;"></span><?= $fetch_property['deposite']; ?></span></p>
-                    <p><i>status :</i><span><?= $fetch_property['status']; ?></span></p>
-                    <p><i>bedroom :</i><span><?= $fetch_property['bedroom']; ?></span></p>
-                    <p><i>bathroom :</i><span><?= $fetch_property['bathroom']; ?></span></p>
-                    <p><i>balcony :</i><span><?= $fetch_property['balcony']; ?></span></p>
+                    <p><i>statut :</i><span><?= $fetch_property['status']; ?></span></p>
+                    <p><i>chambre :</i><span><?= $fetch_property['bedroom']; ?></span></p>
+                    <p><i>salle de bain :</i><span><?= $fetch_property['bathroom']; ?></span></p>
+                    <p><i>balcon :</i><span><?= $fetch_property['balcony']; ?></span></p>
                 </div>
                 <div class="box">
-                    <p><i>carpet area :</i><span><?= $fetch_property['carpet']; ?>sqft</span></p>
-                    <p><i>age :</i><span><?= $fetch_property['age']; ?> years</span></p>
-                    <p><i>total floors :</i><span><?= $fetch_property['total_floors']; ?></span></p>
-                    <p><i>room floor :</i><span><?= $fetch_property['room_floor']; ?></span></p>
-                    <p><i>furnished :</i><span><?= $fetch_property['furnished']; ?></span></p>
-                    <p><i>loan :</i><span><?= $fetch_property['loan']; ?></span></p>
+                    <p><i>surface habitable :</i><span><?= $fetch_property['carpet']; ?> sqft</span></p>
+                    <p><i>âge :</i><span><?= $fetch_property['age']; ?> ans</span></p>
+                    <p><i>nombre total d'étages :</i><span><?= $fetch_property['total_floors']; ?></span></p>
+                    <p><i>étage de la chambre :</i><span><?= $fetch_property['room_floor']; ?></span></p>
+                    <p><i>meublé :</i><span><?= $fetch_property['furnished']; ?></span></p>
+                    <p><i>prêt :</i><span><?= $fetch_property['loan']; ?></span></p>
                 </div>
             </div>
-            <h3 class="title">amenities</h3>
+
+            <h3 class="title">commodités</h3>
             <div class="flex">
                 <div class="box">
                     <p><i
-                            class="fas fa-<?php if($fetch_property['lift'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>lifts</span>
+                            class="fas fa-<?php if($fetch_property['lift'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>ascenseurs</span>
                     </p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['security_guard'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>security
-                            guards</span></p>
+                            class="fas fa-<?php if($fetch_property['security_guard'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>gardes
+                            de sécurité</span></p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['play_ground'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>play
-                            ground</span></p>
+                            class="fas fa-<?php if($fetch_property['play_ground'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>aire
+                            de jeux</span></p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['garden'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>gardens</span>
+                            class="fas fa-<?php if($fetch_property['garden'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>jardins</span>
                     </p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['water_supply'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>water
-                            supply</span></p>
+                            class="fas fa-<?php if($fetch_property['water_supply'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>approvisionnement
+                            en eau</span></p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['power_backup'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>power
-                            backup</span></p>
+                            class="fas fa-<?php if($fetch_property['power_backup'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>alimentation
+                            de secours</span></p>
                 </div>
                 <div class="box">
                     <p><i
-                            class="fas fa-<?php if($fetch_property['parking_area'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>parking
-                            area</span></p>
+                            class="fas fa-<?php if($fetch_property['parking_area'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>zone
+                            de stationnement</span></p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['gym'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>gym</span>
+                            class="fas fa-<?php if($fetch_property['gym'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>gymnase</span>
                     </p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['shopping_mall'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>shopping
-                            mall</span></p>
+                            class="fas fa-<?php if($fetch_property['shopping_mall'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>centre
+                            commercial</span></p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['hospital'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>hospital</span>
+                            class="fas fa-<?php if($fetch_property['hospital'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>hôpital</span>
                     </p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['school'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>schools</span>
+                            class="fas fa-<?php if($fetch_property['school'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>écoles</span>
                     </p>
                     <p><i
-                            class="fas fa-<?php if($fetch_property['market_area'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>market
-                            area</span></p>
+                            class="fas fa-<?php if($fetch_property['market_area'] == 'yes'){echo 'check';}else{echo 'times';} ?>"></i><span>zone
+                            de marché</span></p>
                 </div>
             </div>
-            <h3 class="title">description</h3>
+
+            <h3 class="title">déscription</h3>
             <p class="description"><?= $fetch_property['description']; ?></p>
             <form action="" method="post" class="flex-btn">
                 <input type="hidden" name="delete_id" value="<?= $property_id; ?>">
-                <input type="submit" value="delete property" name="delete" class="delete-btn"
-                    onclick="return confirm('delete this listing?');">
+                <input type="submit" value="supprimer la propriété" name="delete" class="delete-btn"
+                    onclick="return confirm('supprimer cette annonce ?');">
             </form>
         </div>
         <?php
       }
    }else{
-      echo '<p class="empty">property not found! <a href="listings.php" style="margin-top:1.5rem;" class="option-btn">go to listings</a></p>';
+      echo '<p class="empty">propriété non trouvée! <a href="listings.php" style="margin-top:1.5rem;" class="option-btn">aller aux annonces</a></p>';
    }
    ?>
 
