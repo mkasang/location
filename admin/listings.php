@@ -53,37 +53,39 @@ if(isset($_POST['delete'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Listings</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/admin_style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
+
 <body>
-   
-<!-- header section starts  -->
-<?php include '../components/admin_header.php'; ?>
-<!-- header section ends -->
 
-<section class="listings">
+    <!-- header section starts  -->
+    <?php include '../components/admin_header.php'; ?>
+    <!-- header section ends -->
 
-   <h1 class="heading">all listings</h1>
+    <section class="listings">
 
-   <form action="" method="POST" class="search-form">
-      <input type="text" name="search_box" placeholder="search listings..." maxlength="100" required>
-      <button type="submit" class="fas fa-search" name="search_btn"></button>
-   </form>
+        <h1 class="heading">toutes les annonces</h1>
 
-   <div class="box-container">
+        <form action="" method="POST" class="search-form">
+            <input type="text" name="search_box" placeholder="rechercher des annonces ..." maxlength="100" required>
+            <button type="submit" class="fas fa-search" name="search_btn"></button>
+        </form>
 
-   <?php
+        <div class="box-container">
+
+            <?php
       if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
          $search_box = $_POST['search_box'];
          $search_box = filter_var($search_box, FILTER_SANITIZE_STRING);
@@ -126,34 +128,33 @@ if(isset($_POST['delete'])){
 
          $total_images = (1 + $image_coutn_02 + $image_coutn_03 + $image_coutn_04 + $image_coutn_05);
    ?>
-   <div class="box">
-      <div class="thumb">
-         <p><i class="far fa-image"></i><span><?= $total_images; ?></span></p>
-         <img src="../uploaded_files/<?= $fetch_listing['image_01']; ?>" alt="">
-      </div>
-      <p class="price"><i class="fas fa-indian-rupee-sign"></i><?= $fetch_listing['price']; ?></p>
-      <h3 class="name"><?= $fetch_listing['property_name']; ?></h3>
-      <p class="location"><i class="fas fa-map-marker-alt"></i><?= $fetch_listing['address']; ?></p>
-      <form action="" method="POST">
-         <input type="hidden" name="delete_id" value="<?= $listing_id; ?>">
-         <a href="view_property.php?get_id=<?= $listing_id; ?>" class="btn">view property</a>
-         <input type="submit" value="delete listing" onclick="return confirm('delete this listing?');" name="delete" class="delete-btn">
-      </form>
-   </div>
-   <?php
+            <div class="box">
+                <div class="thumb">
+                    <p><i class="far fa-image"></i><span><?= $total_images; ?></span></p>
+                    <img src="../uploaded_files/<?= $fetch_listing['image_01']; ?>" alt="">
+                </div>
+                <p class="price"><i class="fa-solid fa-dollar-sign"></i><?= $fetch_listing['price']; ?></p>
+                <h3 class="name"><?= $fetch_listing['property_name']; ?></h3>
+                <p class="location"><i class="fas fa-map-marker-alt"></i><?= $fetch_listing['address']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="delete_id" value="<?= $listing_id; ?>">
+                    <a href="view_property.php?get_id=<?= $listing_id; ?>" class="btn">voir la propriété</a>
+                    <input type="submit" value="supprimer l'annonce"
+                        onclick="return confirm('supprimer cette annonce ?');" name="delete" class="delete-btn">
+                </form>
+            </div>
+            <?php
          }
       }elseif(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
-         echo '<p class="empty">no results found!</p>';
+         echo '<p class="empty">aucun résultat trouvé !</p>';
       }else{
-         echo '<p class="empty">no property posted yet!</p>';
+         echo '<p class="empty">aucune propriété publiée pour le moment !</p>';
       }
    ?>
 
-   </div>
+        </div>
 
-</section>
-
-
+    </section>
 
 
 
@@ -171,12 +172,15 @@ if(isset($_POST['delete'])){
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<!-- custom js file link  -->
-<script src="../js/admin_script.js"></script>
 
-<?php include '../components/message.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="../js/admin_script.js"></script>
+
+    <?php include '../components/message.php'; ?>
 
 </body>
+
 </html>
