@@ -23,14 +23,14 @@ if(isset($_POST['submit'])){
    $select_admins->execute([$name]);
 
    if($select_admins->rowCount() > 0){
-      $warning_msg[] = 'Username already taken!';
+      $warning_msg[] = "Nom d'utilisateur déjà pris!";
    }else{
       if($pass != $c_pass){
-         $warning_msg[] = 'Password not matched!';
+         $warning_msg[] = ' Mot de passe ne correspond pas';
       }else{
          $insert_admin = $conn->prepare("INSERT INTO `admins`(id, name, password) VALUES(?,?,?)");
          $insert_admin->execute([$id, $name, $c_pass]);
-         $success_msg[] = 'Registered successfully!';
+         $success_msg[] = 'Enregistré avec succès !';
       }
    }
 
@@ -39,46 +39,46 @@ if(isset($_POST['submit'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Register</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/admin_style.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
+
 <body>
-   
-<!-- header section starts  -->
-<?php include '../components/admin_header.php'; ?>
-<!-- header section ends -->
 
-<!-- register section starts  -->
+    <!-- header section starts  -->
+    <?php include '../components/admin_header.php'; ?>
+    <!-- header section ends -->
 
-<section class="form-container">
+    <!-- register section starts  -->
 
-   <form action="" method="POST">
-      <h3>register new</h3>
-      <input type="text" name="name" placeholder="enter username" maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="pass" placeholder="enter password" maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="c_pass" placeholder="confirm password" maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="register now" name="submit" class="btn">
-   </form>
+    <section class="form-container">
 
-</section>
+        <form action="" method="POST">
+            <h3>inscrire un nouveau</h3>
+            <input type="text" name="name" placeholder="entrer nom d'utilisateur" maxlength="20" class="box" required
+                oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="password" name="pass" placeholder="entrer pmot de passe" maxlength="20" class="box" required
+                oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="password" name="c_pass" placeholder="confirmer le mot de passe" maxlength="20" class="box"
+                required oninput="this.value = this.value.replace(/\s/g, '')">
+            <input type="submit" value="enregistrer" name="submit" class="btn">
+        </form>
 
-<!-- register section ends -->
+    </section>
 
-
-
-
-
+    <!-- register section ends -->
 
 
 
@@ -92,12 +92,18 @@ if(isset($_POST['submit'])){
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<!-- custom js file link  -->
-<script src="../js/admin_script.js"></script>
 
-<?php include '../components/message.php'; ?>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="../js/admin_script.js"></script>
+
+    <?php include '../components/message.php'; ?>
 
 </body>
+
 </html>
